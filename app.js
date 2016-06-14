@@ -19,7 +19,7 @@ app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
 
 // set MailChimp API key here
-mc = new mcapi.Mailchimp(process.env.MAILCHIMP_KEY || '6c88881b648091d492b03cc19df88cc4-us12');
+mc = new mcapi.Mailchimp(process.env.MAILCHIMP_KEY || undefined);
 
 // view engine setup
 

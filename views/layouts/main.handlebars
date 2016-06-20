@@ -142,6 +142,18 @@
 {{!
   <script src="/js/event-main.js"></script>
 }}
+<script>
+$('.page-scroll').on('click', function(event) {
+  event.preventDefault();
+  var hash = event.target.getAttribute('href');
+
+  $('html, body').animate({
+    scrollTop: $(hash).offset().top
+  }, 1000, function() {
+    window.location.hash = hash;
+  });
+});
+</script>
 
 <!-- Plugins
 *********************** -->

@@ -363,6 +363,11 @@ section#pricing .price {background: rgba(20,20,20, 1);display: block;width: 120p
 }
 
 /*********
+9,5.Section Sponsors
+*********/
+section#organizer {background:#FFFFFF}
+
+/*********
 10.Section Sponsors
 *********/
 section#donors {background:#EFEFEF}

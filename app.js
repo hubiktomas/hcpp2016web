@@ -1,6 +1,5 @@
-
-
 var express = require('express');
+var compression = require('compression');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -14,9 +13,13 @@ var users = require('./routes/user');
 
 var app = express();
 
+// set enviroment variable
 var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
+
+// compress all requests
+app.use(compression());
 
 // set MailChimp API key here
 mc = new mcapi.Mailchimp(process.env.MAILCHIMP_KEY || undefined);

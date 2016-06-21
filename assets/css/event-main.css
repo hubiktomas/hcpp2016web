@@ -55,6 +55,7 @@ hr.border-sm {width:50px;border-color: #282828;border-width: 3px;}
 hr.border-thick { margin:50px auto;border-color: #eee;border-width: 3px;}
 a {color: #141414;text-decoration: none;}
 a:hover, a:focus {color: var(--mainColor);text-decoration: none;}
+p a {text-decoration: underline;}
 /* ========== Colours ========== */
 .white {color:#FFF}
 .accent {color:var(--mainColor);}

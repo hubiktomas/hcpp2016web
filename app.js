@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'assets')));
+app.use(express.static(path.join(__dirname, 'assets'), { maxAge: 31536000 }));
 
 app.use('/', routes);
 app.use('/users', users);

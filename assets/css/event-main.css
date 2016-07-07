@@ -37,13 +37,13 @@ Contents
 1.Global Styles
 *********/
 :root {
-	--mainColor: #a5a5a5;
+	--mainColor: #c8a700;
 }
 
 html, body {height: 100%;}
-body {color:#141414; background:#fff;font-family: 'Ubuntu Condensed', sans-serif;}
-article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{font-family: 'Ubuntu Condensed', sans-serif;}
-h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{font-family: 'Ubuntu Condensed', sans-serif;}
+body {color:#141414; background:#fff;font-family: 'Open Sans', sans-serif;}
+article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{font-family: 'Open Sans', sans-serif;}
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{font-family: 'Open Sans', sans-serif;}
 .text-bold {font-weight:700}
 .text-big {font-size:18px}
 .text-bigger {font-size:34px}
@@ -123,7 +123,7 @@ video {width: 100%;height: 100%;display: inline-block;vertical-align: baseline;}
 .content-overlay-counter h1, .content-overlay-counter p {color: #fff;}
 .content-overlay-counter h3 span.date {border: 2px solid #FFF;padding: 10px;letter-spacing: 6px;}
 /* ========== Form Adjustments for Launch Page ========== */
-.form-group {margin-bottom: 0px;color: #141414; vertical-align:top !important;font-family: 'Ubuntu Condensed', sans-serif;}
+.form-group {margin-bottom: 0px;color: #141414; vertical-align:top !important;font-family: 'Open Sans', sans-serif;}
 .form-group input.form-control {height: 42px;background-color: rgba(250, 250, 250, 0.9);color: #141414;}
 .form-control {border-radius: 0;border: 1px solid #fff;}
 .form-group textarea.form-control {background-color: rgba(28, 30, 30, 0.1);color: #141414;}
@@ -414,7 +414,7 @@ ul.social-buttons li a:hover, ul.social-buttons li a:focus, ul.social-buttons li
 /*********
 15.Buttons
 *********/
-.btn {font-family: 'Ubuntu Condensed', sans-serif;}
+.btn {font-family: 'Open Sans', sans-serif;}
 /* ========== Button Main Color ========== */
 .btn-main-color{color:#fff;background-color:var(--mainColor);border-color:var(--mainColor);border-radius:0;text-transform:uppercase;font-weight:500;padding:10px 25px;}
 .btn-main-color:focus,.btn-main-color.focus{color:#fff;background-color:var(--mainColor);border-color:var(--mainColor);}
@@ -453,22 +453,23 @@ header#hero .header-text {padding-top: 200px;padding-bottom:150px;}
 header#fullwidth{background-position:center center;background-repeat:no-repeat;-webkit-background-size:cover;-moz-background-size:cover;background-size:cover;-o-background-size:cover;}
 header#fullwidth {min-height: 100%; /* min. height for modern browser */ height:auto !important; /* important rule for modern Browser */   height:100%; /* min. height for IE */ overflow: hidden !important; /* FF scroll-bar */}
 
-header#fullwidth h1 {text-transform:uppercase;font-weight:400;font-size:28px;background:var(--mainColor);color:#FFF;margin-top:15%}
-header#fullwidth h2 {text-transform:uppercase; font-weight:400; font-size:38px}
-header#fullwidth .sm-title {text-transform:uppercase; font-weight:700;font-size:18px}
+header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:100px;color:#FFF;margin-top:15%;letter-spacing:-8px;}
+header#fullwidth h2 {font-weight:400; font-size:44px}
+header#fullwidth h3 {font-size: 34px;}
+header#fullwidth .sm-title {text-transform:uppercase; font-weight:700;font-size:22px}
 
 @media (min-width: 768px) {
-header#fullwidth h1 {text-transform:uppercase;font-weight:400;font-size:28px;background:var(--mainColor);color:#FFF;}
-header#fullwidth h2 {text-transform:uppercase; font-weight:400; font-size:48px}
-header#fullwidth .sm-title {text-transform:uppercase; font-weight:700;font-size:21px}
+header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:120px;color:#FFF;}
+header#fullwidth h2 {font-weight:400; font-size:44px}
+header#fullwidth .sm-title {text-transform:uppercase; font-weight:700;font-size:28px}
 }
 
 header#fullwidth .header-text {position: relative;z-index: 20;padding: 10% 5% 0;height: 100%;}
 
 
 @media (max-width: 768px) {
-header#fullwidth h1 {text-transform:uppercase;font-weight:400;font-size:21px;background:var(--mainColor);color:#FFF;margin-top:20%}
-header#fullwidth h2 {text-transform:uppercase; font-weight:400; font-size:28px}
+header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:100px;color:#FFF;margin-top:20%}
+header#fullwidth h2 {font-weight:400; font-size:28px}
 header#fullwidth .sm-title {text-transform:uppercase; font-weight:700;font-size:12px}
 }
 
@@ -476,8 +477,8 @@ header#fullwidth .sm-title {text-transform:uppercase; font-weight:700;font-size:
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : portrait) {
-header#fullwidth h1 {text-transform:uppercase;font-weight:400;font-size:28px;background:var(--mainColor);color:#FFF}
-header#fullwidth h2 {text-transform:uppercase; font-weight:400; font-size:48px}
+header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:80px;color:#FFF}
+header#fullwidth h2 {font-weight:400; font-size:44px}
 header#fullwidth .sm-title {text-transform:uppercase; font-weight:700;font-size:21px}
 }
 
@@ -486,7 +487,7 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : landscape)
 and (-webkit-min-device-pixel-ratio: 1)  {
-header#fullwidth h1 {text-transform: uppercase;font-weight: 400;font-size: 28px;background: var(--mainColor);color: #FFF;margin-top: 5px;}
+header#fullwidth h1 {text-transform: uppercase;font-weight:600;font-size:80px;color: #FFF;margin-top: 5px;}
 }
 
 @media only screen
@@ -494,20 +495,20 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : portrait)
 and (-webkit-min-device-pixel-ratio: 1)  {
-header#fullwidth h1 {text-transform: uppercase;font-weight: 400;font-size: 21px;background: var(--mainColor);color: #FFF;margin-top: 15%;}
+header#fullwidth h1 {text-transform: uppercase;font-weight:600;font-size:80px;color: #FFF;margin-top: 15%;}
 }
 
 @media only screen
 and (min-device-width : 414px)
 and (max-device-width : 736px)
 and (orientation : landscape) {
-header#fullwidth h1 {text-transform:uppercase;font-weight:400;font-size:21px;background:var(--mainColor);color:#FFF;margin-top:5%}
-header#fullwidth h2 {text-transform: uppercase;font-weight: 400;font-size: 21px;}
+header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:80px;color:#FFF;margin-top:5%}
+header#fullwidth h2 {font-weight: 400;font-size: 44px;}
 }
 
 @media (max-width: 640px) {
-header#fullwidth h1 {text-transform:uppercase;font-weight:400;font-size:21px;background:var(--mainColor);color:#FFF;margin-top:40%}
-header#fullwidth h2 {text-transform:uppercase; font-weight:400; font-size:24px}
+header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:80px;color:#FFF;margin-top:40%}
+header#fullwidth h2 {font-weight:400; font-size:28px}
 header#fullwidth .header-text {position: relative;z-index: 20;padding: 10% 0% 0;height: 100%;}
 }
 
@@ -519,7 +520,7 @@ header#hero-sm .header-text {padding-top: 150px;padding-bottom: 100px;}
 }
 
 /* ========== Hero Backgrounds ========== */
-.homepage {background-image: url(/media/image-backgrounds/fullwidth-header.jpg);}
+.homepage {background-image: url(/media/image-backgrounds/fullwidth-header.png);}
 .schedulebg {background-image: url(/media/image-backgrounds/black-and-white/schedulebg.jpg);}
 .speakersbg {background-image: url(/media/image-backgrounds/black-and-white/speakersbg.jpg);}
 .latest-news {background-image: url(/media/image-backgrounds/black-and-white/latest-newsbg.jpg);}
@@ -686,7 +687,7 @@ section#full-schedule .coffee-break p {text-transform:uppercase; font-size:21px;
 24.Animated Arrow For Home Page
 *********/
 @media(min-width:768px) {
-.arrow i {position: relative;margin: 0 auto;display: block;top: 150px;color: #FFF;-webkit-animation: arrow 1s both infinite;animation: arrow 1s both infinite;}
+.arrow i {position: relative;margin: 0 auto;display: block;top: 50px;color: #FFF;-webkit-animation: arrow 1s both infinite;animation: arrow 1s both infinite;}
 }
 @media(max-width:768px) {
 .arrow i {display: none;}

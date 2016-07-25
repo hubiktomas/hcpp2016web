@@ -11,7 +11,6 @@ var exphbs  = require('express-handlebars');
 var mcapi = require('mailchimp-api/mailchimp');
 
 var routes = require('./routes/index');
-var users = require('./routes/user');
 
 var app = express();
 

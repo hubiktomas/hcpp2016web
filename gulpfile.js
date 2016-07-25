@@ -5,7 +5,6 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   postcss = require('gulp-postcss'),
   cssnano = require('cssnano'),
-  uncss = require('gulp-uncss'),
   reporter = require('postcss-reporter'),
   cssnext = require('postcss-cssnext');
 
@@ -21,9 +20,6 @@ gulp.task('styles', function () {
   ];
   return gulp.src(['./assets/css/*.css', './assets/plugins/custom-google-map/ggl-map-main.css'])
     .pipe(concat('styles.css'))
-    .pipe(uncss({
-      html: ['http://localhost:3000']
-    }))
     .pipe(postcss(processors))
     .pipe(gulp.dest('./assets/public/css'))
     .pipe(livereload());

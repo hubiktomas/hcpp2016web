@@ -11,6 +11,7 @@ var exphbs  = require('express-handlebars');
 var mcapi = require('mailchimp-api/mailchimp');
 
 var routes = require('./routes/index');
+var conduct = require('./routes/code_of_conduct');
 
 var app = express();
 
@@ -18,6 +19,7 @@ var app = express();
 var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
+app.locals.APP_NAME = 'Hackers Congress Paralelní Polis 2016';
 
 // compress all requests
 app.use(compression());
@@ -44,6 +46,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'assets'), { maxAge: 31536000 }));
 
 app.use('/', routes);
+app.use('/code-of-conduct', conduct);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

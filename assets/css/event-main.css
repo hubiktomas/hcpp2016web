@@ -40,6 +40,15 @@ Contents
 	--mainColor: #c8a700;
 }
 
+.count-headlines {
+	counter-reset: headline;
+}
+
+.count-headlines h2:before {
+	counter-increment: headline;
+	content: counter(headline) '. ';
+}
+
 html, body {height: 100%;}
 body {color:#141414; background:#fff;font-family: 'Ubuntu Condensed', sans-serif;}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{font-family: 'Ubuntu Condensed', sans-serif;}
@@ -370,7 +379,7 @@ section#organizer {background:#FFFFFF}
 /*********
 10.Section Sponsors
 *********/
-section#donors {background:#EFEFEF}
+section#partners {background:#EFEFEF}
 
 /*********
 11.Section Newsletter

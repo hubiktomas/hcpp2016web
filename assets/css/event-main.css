@@ -387,7 +387,7 @@ section#partners {background:#EFEFEF}
 section#newsletter {background:#141414 url(/media/image-backgrounds/newsletterbg.jpg) no-repeat;background-position:top center;background-repeat:no-repeat;-webkit-background-size:cover;-moz-background-size:cover;background-size:cover;-o-background-size:cover; background-attachment:fixed}
 section#newsletter .form-group {margin-bottom: 0px;color: #141414; vertical-align:top}
 section#newsletter .form-group input.form-control {height: 42px;background-color: rgba(250, 250, 250, 0.9);color: #141414;}
-section#newsletter .form-control {border-radius: 0;border: 1px solid #fff;}
+section#newsletter .form-control {border-radius: 0;border: 1px solid #fff; width: 20rem;}
 section#newsletter .form-group textarea.form-control {background-color: rgba(28, 30, 30, 0.1);color: #141414;}
 section#newsletter .form-control:focus {border-color: var(--mainColor);box-shadow: none; border:1px solid var(--mainColor);}
 section#newsletter::-webkit-input-placeholder {text-transform: uppercase;font-weight: 700;color: #bbb;}

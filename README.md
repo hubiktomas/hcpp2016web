@@ -33,7 +33,7 @@ npm install
 ### Run app
 Deploy app to server...
 
-Set enviroment variable ``MAILCHIMP_KEY`` as your Mailchimp API key
+Set enviroment variables -> see file ```.env_example``` and make ```.env``` file
 
 Then run:
 ```

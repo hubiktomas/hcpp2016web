@@ -49,6 +49,10 @@ Contents
 	content: counter(headline) '. ';
 }
 
+.container-expand {
+	display: none;
+}
+
 html, body {height: 100%;}
 body {color:#141414; background:#fff;font-family: 'Ubuntu Condensed', sans-serif;}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{font-family: 'Ubuntu Condensed', sans-serif;}

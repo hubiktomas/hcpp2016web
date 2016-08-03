@@ -29,7 +29,6 @@ router.post('/', function(req, res) {
       email: req.body.email
     }}, function(data) {
       res.render('index', {
-        title: pageTitle,
         title_hash: hashTitle,
         description: pageDescription,
         mailchimp_message: 'You subscribed successfully! Look for the confirmation email.'
@@ -42,7 +41,6 @@ router.post('/', function(req, res) {
         errorMsg = error.error;
       }
       res.render('index', {
-        title: pageTitle,
         title_hash: hashTitle,
         description: pageDescription,
         mailchimp_message: 'There was an error subscribing user. ' + errorMsg

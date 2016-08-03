@@ -9,6 +9,9 @@ var pageDescription = 'Hackers Congress Paralelní Polis is one of the premier e
 
 router.get('/', function(req, res) {
   res.render('code_of_conduct', {
+    protocol: req.protocol,
+    hostname: req.hostname,
+    path: req.originalUrl,
     title: pageTitle,
     title_hash: hashTitle,
     description: pageDescription

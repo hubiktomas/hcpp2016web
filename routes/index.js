@@ -11,6 +11,9 @@ var includeHeader = true;
 
 router.get('/', function(req, res) {
   res.render('index', {
+    protocol: req.protocol,
+    hostname: req.hostname,
+    path: req.originalUrl,
     title_hash: hashTitle,
     description: pageDescription,
     topics_description_one: topicsDesciption_one,

@@ -9,6 +9,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
 var mcapi = require('mailchimp-api/mailchimp');
+var helmet = require('helmet');
 
 var routes = require('./routes/index');
 var conduct = require('./routes/code_of_conduct');
@@ -23,6 +24,9 @@ app.locals.APP_NAME = 'Hackers Congress Paralelní Polis 2016';
 
 // compress all requests
 app.use(compression());
+
+// security middleware
+app.use(helmet());
 
 // set MailChimp API key here
 mc = new mcapi.Mailchimp(process.env.MAILCHIMP_KEY || undefined);

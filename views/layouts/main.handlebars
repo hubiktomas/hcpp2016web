@@ -41,7 +41,10 @@
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+{{#unless ENV_DEVELOPMENT}}
   {{>analytics}}
+{{/unless}}
+
 
 <!-- Navigation -->
 <nav id="darknav" class="navbar navbar-default navbar-fixed-top">
@@ -162,7 +165,9 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js" defer></script>
-<script src="/js/measure.js" defer></script>
+{{#unless ENV_DEVELOPMENT}}
+  <script src="/js/measure.js" defer></script>
+{{/unless}}
 {{!
   <script src="/js/event-main.js"></script>
 }}

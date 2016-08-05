@@ -5,8 +5,8 @@ var router = express.Router();
 
 var hashTitle = '#HCPP2016';
 var pageDescription = 'Hackers Congress Paralelní Polis is one of the premier events for hackers, artists, activists, libertarians, and cryptoenthusiasts in Europe.';
-var topicsDesciption_one = 'Our 3rd annual Hackers Congress Paralelní Polis is one of the premier events for hackers, artists, activists, freedom lovers, and crypto enthusiasts in Europe. Its main goal is to celebrate the new era of digital freedom and technological progress. The congress aims to promote the most recent trends and events in art, science, crypto-technologies,  decentralized economy, and hacktivism.';
-var topicsDesciption_two = 'Come and join hundreds of technology enthusiasts, academics, tech-entrepreneurs, journalists and students, in order to catch a glimpse of the future!';
+var topicsDesciption_one = 'The concept of authoritative state is gradually becoming obsolete. The rise of sharing economies with reputation models, digital contracts and cryptocurrencies makes the role of central governments useless. In this era, you might share more with random people from other parts of the world than you do with your neighbors.';
+var topicsDesciption_two = 'Come and join us at the 3rd Hackers Congress Paralelní Polis with hundreds of technology enthusiasts, tech-entrepreneurs, activists and cryptoanarchists to celebrate the age of digital freedom and decentralization!';
 var includeHeader = true;
 
 router.get('/', function(req, res) {

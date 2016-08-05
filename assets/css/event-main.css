@@ -40,6 +40,18 @@ Contents
 	--mainColor: #c8a700;
 }
 
+header#fullwidth .decentralization {
+	display: inline-block;
+	max-width: 90%;
+	padding: 30px;
+	text-transform: uppercase;
+	font-weight: 700;
+  background: #000;
+  box-shadow: 0 0 5px #1b1b1b;
+  border-radius: 2px;
+  transform: rotate(2deg);
+}
+
 .count-headlines {
 	counter-reset: headline;
 }
@@ -51,6 +63,22 @@ Contents
 
 .container-expand {
 	display: none;
+
+	@media (min-width: 768px) {
+		& {
+			display: block;
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.see-more {
+		display: none;
+	}
+}
+
+.underlined {
+	text-decoration: underline;
 }
 
 html, body {height: 100%;}
@@ -391,7 +419,7 @@ section#partners {background:#EFEFEF}
 section#newsletter {background:#141414 url(/media/image-backgrounds/newsletterbg.jpg) no-repeat;background-position:top center;background-repeat:no-repeat;-webkit-background-size:cover;-moz-background-size:cover;background-size:cover;-o-background-size:cover; background-attachment:fixed}
 section#newsletter .form-group {margin-bottom: 0px;color: #141414; vertical-align:top}
 section#newsletter .form-group input.form-control {height: 42px;background-color: rgba(250, 250, 250, 0.9);color: #141414;}
-section#newsletter .form-control {border-radius: 0;border: 1px solid #fff; width: 20rem;}
+section#newsletter .form-control {border-radius: 0;border: 1px solid #fff;width:60%; margin: auto}
 section#newsletter .form-group textarea.form-control {background-color: rgba(28, 30, 30, 0.1);color: #141414;}
 section#newsletter .form-control:focus {border-color: var(--mainColor);box-shadow: none; border:1px solid var(--mainColor);}
 section#newsletter::-webkit-input-placeholder {text-transform: uppercase;font-weight: 700;color: #bbb;}
@@ -399,6 +427,10 @@ section#newsletter:-moz-placeholder {text-transform: uppercase;font-weight: 700;
 section#newsletter::-moz-placeholder {text-transform: uppercase;font-weight: 700; color: #bbb;}
 section#newsletter:-ms-input-placeholder {text-transform: uppercase;font-weight: 700;color: #bbb;}
 section#newsletter .text-danger {color: var(--mainColor);}
+
+@media (min-width: 768px) {
+	section#newsletter .form-control { width: 20rem;}
+}
 
 /*********
 12.Section Location
@@ -474,13 +506,13 @@ header#fullwidth img {
 }
 
 
-header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:100px;color:#FFF;margin-top:15%;}
+header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:10px;color:#FFF;margin-top:15%;}
 header#fullwidth h2 {font-weight:400; font-size:38px}
 header#fullwidth h3 {font-size: 28px;}
 header#fullwidth .sm-title {text-transform:uppercase; font-weight:700;font-size:22px}
 
 @media (min-width: 768px) {
-header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:120px;color:#FFF;}
+header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:10px;color:#FFF;}
 header#fullwidth h2 {font-weight:400; font-size:44px}
 header#fullwidth h3 {font-size: 34px;}
 header#fullwidth .sm-title {text-transform:uppercase; font-weight:700;font-size:28px}
@@ -490,7 +522,7 @@ header#fullwidth .header-text {position: relative;z-index: 20;padding: 10% 5% 0;
 
 
 @media (max-width: 768px) {
-header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:100px;color:#FFF;margin-top:20%}
+header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:10px;color:#FFF;margin-top:20%}
 header#fullwidth h2 {font-weight:400; font-size:38px}
 header#fullwidth h3 {font-size: 28px;}
 header#fullwidth .sm-title {text-transform:uppercase; font-weight:700;font-size:12px}
@@ -500,7 +532,7 @@ header#fullwidth .sm-title {text-transform:uppercase; font-weight:700;font-size:
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : portrait) {
-header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:80px;color:#FFF}
+header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:8px;color:#FFF}
 header#fullwidth h2 {font-weight:400; font-size:44px}
 header#fullwidth .sm-title {text-transform:uppercase; font-weight:700;font-size:21px}
 }
@@ -510,7 +542,7 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : landscape)
 and (-webkit-min-device-pixel-ratio: 1)  {
-header#fullwidth h1 {text-transform: uppercase;font-weight:600;font-size:80px;color: #FFF;margin-top: 5px;}
+header#fullwidth h1 {text-transform: uppercase;font-weight:600;font-size:8px;color: #FFF;margin-top: 5px;}
 }
 
 @media only screen
@@ -518,19 +550,19 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : portrait)
 and (-webkit-min-device-pixel-ratio: 1)  {
-header#fullwidth h1 {text-transform: uppercase;font-weight:600;font-size:80px;color: #FFF;margin-top: 15%;}
+header#fullwidth h1 {text-transform: uppercase;font-weight:600;font-size:8px;color: #FFF;margin-top: 15%;}
 }
 
 @media only screen
 and (min-device-width : 414px)
 and (max-device-width : 736px)
 and (orientation : landscape) {
-header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:80px;color:#FFF;margin-top:5%}
+header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:8px;color:#FFF;margin-top:5%}
 header#fullwidth h2 {font-weight: 400;font-size: 44px;}
 }
 
 @media (max-width: 640px) {
-header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:80px;color:#FFF;margin-top:40%}
+header#fullwidth h1 {text-transform:uppercase;font-weight:600;font-size:8px;color:#FFF;margin-top:40%}
 header#fullwidth h2 {font-weight:400; font-size:28px}
 header#fullwidth .header-text {position: relative;z-index: 20;padding: 10% 0% 0;height: 100%;}
 }

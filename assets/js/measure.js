@@ -10,7 +10,7 @@
   });
 
   // Track speaker click
-  $('.speaker-item a').on('click touchend', function() {
+  $('.speaker-item').on('click', function() {
     ga('send', {
       hitType: 'event',
       eventCategory: 'Speakers',
@@ -19,7 +19,7 @@
   });
 
   // Track open more Speakers
-  $('.see-more').on('click touchend', function() {
+  $('.see-more').on('click', function() {
     ga('send', {
       hitType: 'event',
       eventCategory: 'Speakers',

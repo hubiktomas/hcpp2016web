@@ -29,8 +29,14 @@ router.post('/', function(req, res) {
       email: req.body.email
     }}, function(data) {
       res.render('index', {
+        protocol: req.protocol,
+        hostname: req.hostname,
+        path: req.originalUrl,
         title_hash: hashTitle,
         description: pageDescription,
+        topics_description_one: topicsDesciption_one,
+        topics_description_two: topicsDesciption_two,
+        include_header: includeHeader,
         mailchimp_message: 'You subscribed successfully! Look for the confirmation email.'
       });
     },

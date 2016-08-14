@@ -34,6 +34,20 @@
     }, false);
   });
 
+  // Track ticket click
+  var ticketItems = document.querySelectorAll('ticket');
+  Array.prototype.forEach.call(ticketItems, function(ticketItem) {
+    ticketItem.addEventListener('click', function(event) {
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'Tickets',
+        eventAction: 'click',
+        eventLabel: ticketItem.querySelector('h3').textContent,
+        transport: 'beacon'
+      });
+    });
+  });
+
   // Track speaker click
   var speakerItems = document.querySelectorAll('.speaker-item');
   Array.prototype.forEach.call(speakerItems, function(speakerItem) {

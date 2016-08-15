@@ -35,16 +35,14 @@
   });
 
   // Track ticket click
-  var ticketItems = document.querySelectorAll('ticket');
-  Array.prototype.forEach.call(ticketItems, function(ticketItem) {
-    ticketItem.addEventListener('click', function(event) {
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'Tickets',
-        eventAction: 'click',
-        eventLabel: ticketItem.querySelector('h3').textContent,
-        transport: 'beacon'
-      });
+  var ticketLink = document.querySelector('.js-shop-link');
+  ticketLink.addEventListener('click', function(event) {
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Tickets',
+      eventAction: 'click',
+      eventLabel: ticketItem.textContent,
+      transport: 'beacon'
     });
   });
 

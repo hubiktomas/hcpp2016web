@@ -10,6 +10,16 @@ var topicsDesciption_two = 'Come and join us at the 3rd Hackers Congress Paralel
 var includeHeader = true;
 
 router.get('/', function(req, res) {
+
+  var mailchimpMessage = null;
+  
+  if (req.query.subscribe === 'success') {
+    mailchimpMessage = 'You subscribed successfully! Look for the confirmation email.';
+  }
+  else if (req.query.subscribe === 'error') {
+    mailchimpMessage = 'There was an error subscribing user. ' + req.query.msg;
+  }
+
   res.render('index', {
     protocol: req.protocol,
     hostname: req.hostname,
@@ -18,27 +28,19 @@ router.get('/', function(req, res) {
     description: pageDescription,
     topics_description_one: topicsDesciption_one,
     topics_description_two: topicsDesciption_two,
-    include_header: includeHeader
+    include_header: includeHeader,
+    mailchimp_message: mailchimpMessage
   });
 });
 
-router.post('/', function(req, res) {
+router.post('/subscribe', function(req, res) {
   mc.lists.subscribe({
     id: req.body.list_id,
     email: {
       email: req.body.email
-    }}, function(data) {
-      res.render('index', {
-        protocol: req.protocol,
-        hostname: req.hostname,
-        path: req.originalUrl,
-        title_hash: hashTitle,
-        description: pageDescription,
-        topics_description_one: topicsDesciption_one,
-        topics_description_two: topicsDesciption_two,
-        include_header: includeHeader,
-        mailchimp_message: 'You subscribed successfully! Look for the confirmation email.'
-      });
+    }},
+    function(data) {
+      res.redirect('/?subscribe=success');
     },
     function(error) {
       var errorMsg;
@@ -46,11 +48,7 @@ router.post('/', function(req, res) {
         console.log(error.code + ": " + error.error);
         errorMsg = error.error;
       }
-      res.render('index', {
-        title_hash: hashTitle,
-        description: pageDescription,
-        mailchimp_message: 'There was an error subscribing user. ' + errorMsg
-      });
+      res.redirect('/?subscribe=error&msg=' + errorMsg)
     });
 });
 

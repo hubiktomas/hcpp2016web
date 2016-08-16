@@ -28,6 +28,21 @@ router.get('/', function(req, res) {
       return res.json();
     })
     .then(function(frabData) {
+      var speakers = frabData.schedule_speakers.speakers;
+      speakers.forEach(function(speaker, index) {
+        var match = speaker.image.match(/(\/system\/people\/avatars\/[0-9]+\/[0-9]+\/[0-9]+)\/(medium|large|small)\/([a-zA-Z0-9\-]+\.jpg)/);
+        if (match) {
+          speakers[index].image = match[1] + '/large/' + match[3];
+        }
+      });
+
+      var speakerRows = [];
+
+      while (speakers.length) {
+        speakerRows.push(speakers.splice(0, 4));
+      }
+      console.log(speakerRows);
+      
       res.render('index', {
         protocol: req.protocol,
         hostname: req.hostname,
@@ -38,7 +53,7 @@ router.get('/', function(req, res) {
         topics_description_two: topicsDesciption_two,
         include_header: includeHeader,
         mailchimp_message: mailchimpMessage,
-        frab_data: frabData
+        speakerRows: speakerRows
       });
     })
     .catch(function(err) {

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var fetch = require('node-fetch');
 
 /* GET home page. */
 
@@ -9,10 +10,12 @@ var topicsDesciption_one = 'The concept of authoritative state is gradually beco
 var topicsDesciption_two = 'Come and join us at the 3rd Hackers Congress Paralelní Polis with hundreds of technology enthusiasts, tech-entrepreneurs, activists and cryptoanarchists to celebrate the age of digital freedom and decentralization!';
 var includeHeader = true;
 
+var frab = process.env.API_URL;
+
 router.get('/', function(req, res) {
 
   var mailchimpMessage = null;
-  
+
   if (req.query.subscribe === 'success') {
     mailchimpMessage = 'You subscribed successfully! Look for the confirmation email.';
   }
@@ -20,17 +23,27 @@ router.get('/', function(req, res) {
     mailchimpMessage = 'There was an error subscribing user. ' + req.query.msg;
   }
 
-  res.render('index', {
-    protocol: req.protocol,
-    hostname: req.hostname,
-    path: req.originalUrl,
-    title_hash: hashTitle,
-    description: pageDescription,
-    topics_description_one: topicsDesciption_one,
-    topics_description_two: topicsDesciption_two,
-    include_header: includeHeader,
-    mailchimp_message: mailchimpMessage
-  });
+  fetch(frab)
+    .then(function(res) {
+      return res.json();
+    })
+    .then(function(frabData) {
+      res.render('index', {
+        protocol: req.protocol,
+        hostname: req.hostname,
+        path: req.originalUrl,
+        title_hash: hashTitle,
+        description: pageDescription,
+        topics_description_one: topicsDesciption_one,
+        topics_description_two: topicsDesciption_two,
+        include_header: includeHeader,
+        mailchimp_message: mailchimpMessage,
+        frab_data: frabData
+      });
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
 });
 
 router.post('/subscribe', function(req, res) {

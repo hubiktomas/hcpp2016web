@@ -35,14 +35,16 @@
   });
 
   // Track ticket click
-  var ticketLink = document.querySelector('.js-shop-link');
-  ticketLink.addEventListener('click', function(event) {
-    ga('send', {
-      hitType: 'event',
-      eventCategory: 'Tickets',
-      eventAction: 'click',
-      eventLabel: ticketItem.textContent,
-      transport: 'beacon'
+  var ticketLinks = document.querySelectorAll('.js-shop-link');
+  Array.prototype.forEach.call(ticketLinks, function(ticketLink) {
+    ticketLink.addEventListener('click', function(event) {
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'Tickets',
+        eventAction: 'click',
+        eventLabel: ticketItem.textContent,
+        transport: 'beacon'
+      });
     });
   });
 

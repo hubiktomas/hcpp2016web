@@ -59,24 +59,6 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-app.use(function(error, req, res, next) {
-
-    // Catches errors from middleware and controllers.
-
-    if (error) {
-
-        if (!error.status) {
-            util.error(error);
-            error.message = 'Unexpected error.';
-            error.status = 500;
-        }
-
-        return res.status(error.status).send(error.message || 'Unexpected error.');
-    }
-
-    next();
-});
-
 /// error handlers
 
 // development error handler

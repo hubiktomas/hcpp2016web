@@ -10,7 +10,26 @@ var topicsDesciption_one = 'The concept of authoritative state is gradually beco
 var topicsDesciption_two = 'Come and join us at the 3rd Hackers Congress Paralelní Polis with hundreds of technology enthusiasts, tech-entrepreneurs, activists and cryptoanarchists to celebrate the age of digital freedom and decentralization!';
 var includeHeader = true;
 
-var frab = process.env.API_URL;
+var apiUrl = process.env.API_URL;
+
+var formatApiData = function(apiData) {
+  var speakers = apiData.schedule_speakers.speakers;
+  
+  speakers.forEach(function(speaker, index) {
+    var match = speaker.image.match(/(\/system\/people\/avatars\/[0-9]+\/[0-9]+\/[0-9]+)\/(medium|large|small)\/([a-zA-Z0-9\-]+\.jpg)/);
+    if (match) {
+      speaker.image = match[1] + '/large/' + match[3];
+    }
+  });
+
+  var speakerRows = [];
+
+  while (speakers.length) {
+    speakerRows.push(speakers.splice(0, 4));
+  }
+
+  return speakerRows;
+}
 
 router.get('/', function(req, res) {
 
@@ -23,26 +42,14 @@ router.get('/', function(req, res) {
     mailchimpMessage = 'There was an error subscribing user. ' + req.query.msg;
   }
 
-  fetch(frab)
+  fetch(apiUrl)
     .then(function(res) {
       return res.json();
     })
-    .then(function(frabData) {
-      var speakers = frabData.schedule_speakers.speakers;
-      speakers.forEach(function(speaker, index) {
-        var match = speaker.image.match(/(\/system\/people\/avatars\/[0-9]+\/[0-9]+\/[0-9]+)\/(medium|large|small)\/([a-zA-Z0-9\-]+\.jpg)/);
-        if (match) {
-          speakers[index].image = match[1] + '/large/' + match[3];
-        }
-      });
-
-      var speakerRows = [];
-
-      while (speakers.length) {
-        speakerRows.push(speakers.splice(0, 4));
-      }
-      console.log(speakerRows);
-      
+    .then(function(apiData) {
+      return formatApiData(apiData);
+    })
+    .then(function(speakerRows) {
       res.render('index', {
         protocol: req.protocol,
         hostname: req.hostname,

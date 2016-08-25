@@ -8,6 +8,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
+var helpers = require('handlebars-helpers')();
 var mcapi = require('mailchimp-api/mailchimp');
 var helmet = require('helmet');
 
@@ -35,7 +36,8 @@ mc = new mcapi.Mailchimp(process.env.MAILCHIMP_KEY || undefined);
 
 app.engine('handlebars', exphbs({
   defaultLayout: 'main',
-  partialsDir: ['views/partials/']
+  partialsDir: ['views/partials/'],
+  helpers: helpers
 }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');

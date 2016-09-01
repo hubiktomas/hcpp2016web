@@ -71,6 +71,14 @@ header#fullwidth .decentralization {
 	}
 }
 
+.partners-row > div {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	min-height: 110px;
+}
+
 @media (min-width: 768px) {
 	.see-more {
 		display: none;

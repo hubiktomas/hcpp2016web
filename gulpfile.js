@@ -10,7 +10,7 @@ var gulp = require('gulp'),
 
 gulp.task('styles', function () {
   var processors = [
-    cssnext({browsers: ['last 2 versions']}),
+    cssnext({browsers: ['last 10 versions']}),
     cssnano({
       discardComments: {
         removeAll: true

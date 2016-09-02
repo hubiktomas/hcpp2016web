@@ -71,12 +71,29 @@ header#fullwidth .decentralization {
 	}
 }
 
-.partners-row > div {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	min-height: 110px;
+.partners-row {
+
+	text-align: center;
+
+	& img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	@media (min-width: 768px) {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-end;
+
+		& > div {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			min-height: 110px;
+			text-align: center;
+		}
+	}
 }
 
 @media (min-width: 768px) {

@@ -42,7 +42,7 @@
         hitType: 'event',
         eventCategory: 'Tickets',
         eventAction: 'click',
-        eventLabel: ticketItem.textContent,
+        eventLabel: ticketLink.textContent,
         transport: 'beacon'
       });
     });

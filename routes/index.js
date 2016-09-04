@@ -14,13 +14,30 @@ var apiUrl = process.env.API_URL;
 
 var formatApiData = function(apiData) {
   var speakers = apiData.schedule_speakers.speakers;
-  
+
   speakers.forEach(function(speaker, index) {
     var match = speaker.image.match(/(\/system\/people\/avatars\/[0-9]+\/[0-9]+\/[0-9]+)\/(medium|large|small)\/([a-zA-Z0-9\-]+\.jpg)/);
     if (match) {
-      speaker.image = match[1] + '/large/' + match[3];
+      speaker.image = match[1] + '/huge/' + match[3];
     }
+
+    var orderMatch = speaker.description.match(/{{(.*)}}/) || [0, 100];
+    speaker.order = parseInt(orderMatch[1]);
   });
+
+  console.log(speakers);
+
+  speakers.sort(function(a, b) {
+    if (a.order > b.order) {
+      return 1;
+    }
+
+    if (a.order < b.order) {
+      return -1;
+    }
+
+    return 0;
+  })
 
   var speakerRows = [];
 

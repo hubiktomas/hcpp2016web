@@ -64,12 +64,12 @@ router.get('/', function(req, res) {
 
   fetch(apiUrl)
     .then(function(res) {
+      var imageBase = true;
       return res.json(), imageBase;
     })
     .catch(function(err) {
       console.log(err);
       var fileData = fs.readFileSync('speakers_backup.json');
-      var imageBase = true;
 
       return JSON.parse(fileData);
     })

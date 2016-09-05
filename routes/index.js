@@ -12,9 +12,8 @@ var topicsDesciption_two = 'Come and join us at the 3rd Hackers Congress Paralel
 var includeHeader = true;
 
 var apiUrl = process.env.API_URL;
-var imageBaseHref = 'http://frab.paralelnipolis.cz';
 
-var formatApiData = function(apiData) {
+var formatApiData = function(apiData, imageBase) {
   var speakers = apiData.schedule_speakers.speakers;
 
   speakers.forEach(function(speaker, index) {
@@ -25,6 +24,10 @@ var formatApiData = function(apiData) {
 
     var orderMatch = speaker.description.match(/{{(.*)}}/) || [0, 100];
     speaker.order = parseInt(orderMatch[1]);
+
+    if (imageBase) {
+      speaker.image = 'http://frab.paralelnipolis.cz' + speaker.image;
+    }
   });
 
   speakers.sort(function(a, b) {
@@ -61,17 +64,17 @@ router.get('/', function(req, res) {
 
   fetch(apiUrl)
     .then(function(res) {
-      return res.json();
+      return res.json(), imageBase;
     })
     .catch(function(err) {
       console.log(err);
       var fileData = fs.readFileSync('speakers_backup.json');
-      imageBaseHref = '';
+      var imageBase = true;
 
       return JSON.parse(fileData);
     })
-    .then(function(apiData) {
-      return formatApiData(apiData);
+    .then(function(apiData, imageBase) {
+      return formatApiData(apiData, imageBase);
     })
     .then(function(speakerRows) {
       res.render('index', {
@@ -84,7 +87,6 @@ router.get('/', function(req, res) {
         topics_description_two: topicsDesciption_two,
         include_header: includeHeader,
         mailchimp_message: mailchimpMessage,
-        image_base_href: imageBaseHref,
         speakerRows: speakerRows
       });
     })

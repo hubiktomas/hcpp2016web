@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fetch = require('node-fetch');
+var fs = require('fs');
 
 /* GET home page. */
 
@@ -11,6 +12,7 @@ var topicsDesciption_two = 'Come and join us at the 3rd Hackers Congress Paralel
 var includeHeader = true;
 
 var apiUrl = process.env.API_URL;
+var imageBaseHref = 'http://frab.paralelnipolis.cz';
 
 var formatApiData = function(apiData) {
   var speakers = apiData.schedule_speakers.speakers;
@@ -24,8 +26,6 @@ var formatApiData = function(apiData) {
     var orderMatch = speaker.description.match(/{{(.*)}}/) || [0, 100];
     speaker.order = parseInt(orderMatch[1]);
   });
-
-  console.log(speakers);
 
   speakers.sort(function(a, b) {
     if (a.order > b.order) {
@@ -63,6 +63,13 @@ router.get('/', function(req, res) {
     .then(function(res) {
       return res.json();
     })
+    .catch(function(err) {
+      console.log(err);
+      var fileData = fs.readFileSync('speakers_backup.json');
+      imageBaseHref = '';
+
+      return JSON.parse(fileData);
+    })
     .then(function(apiData) {
       return formatApiData(apiData);
     })
@@ -77,6 +84,7 @@ router.get('/', function(req, res) {
         topics_description_two: topicsDesciption_two,
         include_header: includeHeader,
         mailchimp_message: mailchimpMessage,
+        image_base_href: imageBaseHref,
         speakerRows: speakerRows
       });
     })

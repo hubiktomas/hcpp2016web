@@ -1,3 +1,4 @@
+require('dotenv').config({silent: true});
 var express = require('express');
 var router = express.Router();
 var fetch = require('node-fetch');
@@ -11,9 +12,11 @@ var topicsDesciption_one = 'The concept of authoritative state is gradually beco
 var topicsDesciption_two = 'Come and join us at the 3rd Hackers Congress Paralelní Polis with hundreds of technology enthusiasts, tech-entrepreneurs, activists and cryptoanarchists to celebrate the age of digital freedom and decentralization!';
 var includeHeader = true;
 
+var imageBase = false;
+
 var apiUrl = process.env.API_URL;
 
-var formatApiData = function(apiData, imageBase) {
+var formatApiData = function(apiData) {
   var speakers = apiData.schedule_speakers.speakers;
 
   speakers.forEach(function(speaker, index) {
@@ -64,8 +67,9 @@ router.get('/', function(req, res) {
 
   fetch(apiUrl)
     .then(function(res) {
-      var imageBase = true;
-      return res.json(), imageBase;
+      imageBase = true;
+
+      return res.json();
     })
     .catch(function(err) {
       console.log(err);
@@ -73,8 +77,8 @@ router.get('/', function(req, res) {
 
       return JSON.parse(fileData);
     })
-    .then(function(apiData, imageBase) {
-      return formatApiData(apiData, imageBase);
+    .then(function(apiData) {
+      return formatApiData(apiData);
     })
     .then(function(speakerRows) {
       res.render('index', {

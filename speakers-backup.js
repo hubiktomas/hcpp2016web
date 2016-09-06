@@ -2,7 +2,7 @@ var fetch = require('node-fetch');
 var fs = require('fs');
 var path = require('path');
 
-var apiUrl = process.env.API_URL;
+var apiUrl = 'http://frab.paralelnipolis.cz/en/hcpp2016/public/speakers.json';
 
 function formatData(jsonData) {
 
@@ -14,7 +14,12 @@ function formatData(jsonData) {
         return res.buffer();
       })
       .then(function(blob) {
-        fs.writeFileSync(path.join(__dirname + '/assets/backup-images/image_') + index + '.jpg', blob);
+        console.log('Writing file ' + index + '.jpg');
+        fs.writeFile(path.join(__dirname + '/assets/backup-images/image_') + index + '.jpg', blob, function(err) {
+          if (err) throw err;
+
+          console.log('File ' + index + '.jpg saved!');
+        });
       })
       .catch(function(err) {
         console.log(err);
@@ -46,7 +51,12 @@ fetch(apiUrl)
     return formatData(jsonData);
   })
   .then(function(jsonData) {
-    fs.writeFile(path.join(__dirname + '/speakers_backup.json'), JSON.stringify(jsonData));
+    console.log('Writing backup JSON file');
+    fs.writeFile(path.join(__dirname + '/speakers_backup.json'), JSON.stringify(jsonData), function(err) {
+      if (err) throw err;
+
+      console.log('Backup JSON saved!');
+    });
   })
   .catch(function(err) {
     console.log(err);

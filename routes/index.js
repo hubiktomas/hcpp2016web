@@ -12,25 +12,12 @@ var topicsDesciption_one = 'The concept of authoritative state is gradually beco
 var topicsDesciption_two = 'Come and join us at the 3rd Hackers Congress Paralelní Polis with hundreds of technology enthusiasts, tech-entrepreneurs, activists and cryptoanarchists to celebrate the age of digital freedom and decentralization!';
 var includeHeader = true;
 
-var imageBase = false;
-
-var apiUrl = process.env.API_URL;
-
 var formatApiData = function(apiData) {
   var speakers = apiData.schedule_speakers.speakers;
 
   speakers.forEach(function(speaker, index) {
-    var match = speaker.image.match(/(\/system\/people\/avatars\/[0-9]+\/[0-9]+\/[0-9]+)\/(medium|large|small)\/([a-zA-Z0-9\-]+\.jpg)/);
-    if (match) {
-      speaker.image = match[1] + '/huge/' + match[3];
-    }
-
     var orderMatch = speaker.description.match(/{{(.*)}}/) || [0, 100];
     speaker.order = parseInt(orderMatch[1]);
-
-    if (imageBase) {
-      speaker.image = 'http://frab.paralelnipolis.cz' + speaker.image;
-    }
   });
 
   speakers.sort(function(a, b) {
@@ -65,38 +52,26 @@ router.get('/', function(req, res) {
     mailchimpMessage = 'There was an error subscribing user. ' + req.query.msg;
   }
 
-  fetch(apiUrl)
-    .then(function(res) {
-      imageBase = true;
+  fs.readFile('speakers_backup.json', function(err, data) {
+    if (err) throw err;
 
-      return res.json();
-    })
-    .catch(function(err) {
-      console.log(err);
-      var fileData = fs.readFileSync('speakers_backup.json');
+    var apiData = JSON.parse(data);
 
-      return JSON.parse(fileData);
-    })
-    .then(function(apiData) {
-      return formatApiData(apiData);
-    })
-    .then(function(speakerRows) {
-      res.render('index', {
-        protocol: req.protocol,
-        hostname: req.hostname,
-        path: req.originalUrl,
-        title_hash: hashTitle,
-        description: pageDescription,
-        topics_description_one: topicsDesciption_one,
-        topics_description_two: topicsDesciption_two,
-        include_header: includeHeader,
-        mailchimp_message: mailchimpMessage,
-        speakerRows: speakerRows
-      });
-    })
-    .catch(function(err) {
-      console.log(err);
+    var speakerRows = formatApiData(apiData);
+
+    res.render('index', {
+      protocol: req.protocol,
+      hostname: req.hostname,
+      path: req.originalUrl,
+      title_hash: hashTitle,
+      description: pageDescription,
+      topics_description_one: topicsDesciption_one,
+      topics_description_two: topicsDesciption_two,
+      include_header: includeHeader,
+      mailchimp_message: mailchimpMessage,
+      speakerRows: speakerRows
     });
+  });
 });
 
 router.post('/subscribe', function(req, res) {

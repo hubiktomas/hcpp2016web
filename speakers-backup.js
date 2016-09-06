@@ -2,7 +2,7 @@ var fetch = require('node-fetch');
 var fs = require('fs');
 var path = require('path');
 
-var apiUrl = 'http://frab.paralelnipolis.cz/en/hcpp2016/public/speakers.json';
+var apiUrl = process.env.API_URL;
 
 function formatData(jsonData) {
 

@@ -14,6 +14,7 @@ var helmet = require('helmet');
 
 var routes = require('./routes/index');
 var conduct = require('./routes/code_of_conduct');
+var subscribe = require('./routes/subscribe');
 
 var app = express();
 
@@ -53,6 +54,7 @@ app.use(express.static(path.join(__dirname, 'assets'), { maxAge: 31536000 }));
 
 app.use('/', routes);
 app.use('/code-of-conduct', conduct);
+app.use('/subscribe', subscribe);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

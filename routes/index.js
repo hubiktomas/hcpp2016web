@@ -49,7 +49,7 @@ router.get('/', function(req, res) {
     mailchimpMessage = 'You subscribed successfully! Look for the confirmation email.';
   }
   else if (req.query.subscribe === 'error') {
-    mailchimpMessage = 'There was an error subscribing user. ' + req.query.msg;
+    mailchimpMessage = 'There was an error subscribing user. ' + req.session.subscribeErrorMsg;
   }
 
   fs.readFile('speakers_backup.json', function(err, data) {

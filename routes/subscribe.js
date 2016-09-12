@@ -12,12 +12,12 @@ router.post('/', function(req, res) {
       res.redirect('/?subscribe=success');
     },
     function(error) {
-      var errorMsg;
+      var subscribeErrorMsg;
       if (error.error) {
         console.log(error.code + ": " + error.error);
-        errorMsg = error.error;
+        req.session.subscribeErrorMsg = error.error;
       }
-      res.redirect('/?subscribe=error&msg=' + errorMsg)
+      res.redirect('/?subscribe=error');
     });
 });
 

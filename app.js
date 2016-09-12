@@ -11,6 +11,7 @@ var exphbs  = require('express-handlebars');
 var helpers = require('handlebars-helpers')();
 var mcapi = require('mailchimp-api/mailchimp');
 var helmet = require('helmet');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var conduct = require('./routes/code_of_conduct');
@@ -23,6 +24,12 @@ var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
 app.locals.APP_NAME = 'Hackers Congress Paralelní Polis 2016';
+
+var sessionSecret = process.env.SESSION_SECRET;
+
+if (typeof sessionSecret === 'undefined') {
+  throw new Error('Session key is not set');
+}
 
 // compress all requests
 app.use(compression());
@@ -49,7 +56,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(cookieParser());
+app.use(cookieParser(sessionSecret));
+app.use(session({
+  secret: sessionSecret,
+  resave: false,
+  saveUninitialized: false
+}));
 app.use(express.static(path.join(__dirname, 'assets'), { maxAge: 31536000 }));
 
 app.use('/', routes);

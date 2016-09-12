@@ -193,6 +193,18 @@ $('.see-more').on('click', function() {
   $('.container-expand').slideDown();
   $('.see-more').fadeOut();
 });
+
+$(window).on('load', function() {
+  if (window.location.search.indexOf('?subscribe') > -1) {
+    var hash = '#newsletter';
+
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top
+    }, 1000, function() {
+      window.location.hash = hash;
+    });
+  }
+});
 </script>
 
 <!-- Plugins

@@ -1,23 +1,38 @@
 require('dotenv').config({silent: true});
 var express = require('express');
 var router = express.Router();
+var multer  = require('multer')();
 
-router.post('/', function(req, res) {
+router.post('/', multer.array(), function(req, res) {
   mc.lists.subscribe({
     id: req.body.list_id,
     email: {
       email: req.body.email
     }},
     function(data) {
-      res.redirect('/?subscribe=success');
+      if (req.body.type === 'fetch') {
+        res.json({
+          subscribeMsg: 'You subscribed successfully! Look for the confirmation email.'
+        });
+      }
+      else {
+        res.redirect('/?subscribe=success');
+      }
     },
     function(error) {
-      var subscribeErrorMsg;
-      if (error.error) {
-        console.log(error.code + ": " + error.error);
-        req.session.subscribeErrorMsg = error.error;
+      if (req.body.type === 'fetch') {
+        res.json({
+          subscribeMsg: 'There was an error subscribing user. ' + error.error
+        });
       }
-      res.redirect('/?subscribe=error');
+      else {
+        var subscribeErrorMsg;
+        if (error.error) {
+          console.log(error.code + ": " + error.error);
+          req.session.subscribeErrorMsg = error.error;
+        }
+        res.redirect('/?subscribe=error');
+      }
     });
 });
 

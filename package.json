@@ -18,18 +18,22 @@
     "helmet": "^2.1.2",
     "mailchimp-api": "^2.0.7",
     "morgan": "^1.6.1",
+    "multer": "^1.2.0",
     "node-fetch": "1.6.0",
     "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
     "cssnano": "^3.7.3",
+    "es6-promise": "^3.3.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-livereload": "^3.8.0",
     "gulp-nodemon": "^2.1.0",
     "gulp-plumber": "^1.0.0",
     "gulp-postcss": "^6.1.1",
+    "gulp-uglify": "^2.0.0",
     "postcss-cssnext": "^2.7.0",
-    "postcss-reporter": "^1.4.1"
+    "postcss-reporter": "^1.4.1",
+    "whatwg-fetch": "^1.0.0"
   }
 }

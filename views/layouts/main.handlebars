@@ -171,41 +171,8 @@
 {{#unless ENV_DEVELOPMENT}}
   <script src="/js/measure.js" defer></script>
 {{/unless}}
-{{!
-  <script src="/js/event-main.js"></script>
-}}
-<script>
-$('.page-scroll').on('click', function(event) {
-  var hash = $(this).attr('href').replace('/', '');
 
-  if($(hash).length > 0) {
-    event.preventDefault();
-
-    $('html, body').animate({
-      scrollTop: $(hash).offset().top
-    }, 1000, function() {
-      window.location.hash = hash;
-    });
-  }
-});
-
-$('.see-more').on('click', function() {
-  $('.container-expand').slideDown();
-  $('.see-more').fadeOut();
-});
-
-$(window).on('load', function() {
-  if (window.location.search.indexOf('?subscribe') > -1) {
-    var hash = '#newsletter';
-
-    $('html, body').animate({
-      scrollTop: $(hash).offset().top
-    }, 1000, function() {
-      window.location.hash = hash;
-    });
-  }
-});
-</script>
+<script src="/public/js/main.min.js" defer></script>
 
 <!-- Plugins
 *********************** -->

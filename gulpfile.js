@@ -6,7 +6,8 @@ var gulp = require('gulp'),
   postcss = require('gulp-postcss'),
   cssnano = require('cssnano'),
   reporter = require('postcss-reporter'),
-  cssnext = require('postcss-cssnext');
+  cssnext = require('postcss-cssnext'),
+  uglify = require('gulp-uglify');
 
 gulp.task('styles', function () {
   var processors = [
@@ -25,8 +26,20 @@ gulp.task('styles', function () {
     .pipe(livereload());
 });
 
+gulp.task('scripts', function() {
+  return gulp.src([
+      './node_modules/es6-promise/dist/es6-promise.js',
+      './node_modules/whatwg-fetch/fetch.js',
+      './assets/js/main.js'
+    ])
+    .pipe(concat('main.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./assets/public/js'))
+    .pipe(livereload());
+})
+
 gulp.task('watch', function() {
-  gulp.watch('./assets/css/*.css', ['styles']);
+  gulp.watch('./assets/*/*.*', ['styles', 'scripts']);
 });
 
 gulp.task('develop', function () {
@@ -48,6 +61,7 @@ gulp.task('develop', function () {
 
 gulp.task('default', [
   'styles',
+  'scripts',
   'develop',
   'watch'
 ]);

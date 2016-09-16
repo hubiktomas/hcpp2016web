@@ -13,9 +13,11 @@ var mcapi = require('mailchimp-api/mailchimp');
 var helmet = require('helmet');
 var session = require('express-session');
 
-var routes = require('./routes/index');
-var conduct = require('./routes/code_of_conduct');
-var subscribe = require('./routes/subscribe');
+// routes
+var indexRoute = require('./routes/index');
+var conductRoute = require('./routes/code_of_conduct');
+var subscribeRoute = require('./routes/subscribe');
+var contactRoute = require('./routes/contact');
 
 var app = express();
 
@@ -64,9 +66,10 @@ app.use(session({
 }));
 app.use(express.static(path.join(__dirname, 'assets'), { maxAge: 31536000 }));
 
-app.use('/', routes);
-app.use('/code-of-conduct', conduct);
-app.use('/subscribe', subscribe);
+app.use('/', indexRoute);
+app.use('/code-of-conduct', conductRoute);
+app.use('/subscribe', subscribeRoute);
+app.use('/contact', contactRoute);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

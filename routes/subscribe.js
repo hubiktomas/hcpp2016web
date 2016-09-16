@@ -1,4 +1,3 @@
-require('dotenv').config({silent: true});
 var express = require('express');
 var router = express.Router();
 var multer  = require('multer')();
@@ -26,7 +25,6 @@ router.post('/', multer.array(), function(req, res) {
         });
       }
       else {
-        var subscribeErrorMsg;
         if (error.error) {
           console.log(error.code + ": " + error.error);
           req.session.subscribeErrorMsg = error.error;

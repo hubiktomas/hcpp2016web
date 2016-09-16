@@ -52,6 +52,15 @@ router.get('/', function(req, res) {
     mailchimpMessage = 'There was an error subscribing user. ' + req.session.subscribeErrorMsg;
   }
 
+  var contactMessage = null;
+
+  if (req.query.subscribe === 'success') {
+    contactMessage = 'Your message was successfully sent! We will contact you soon.';
+  }
+  else if (req.query.subscribe === 'error') {
+    contactMessage = 'There was an error sending message. ' + req.session.contactErrorMsg;
+  }
+
   fs.readFile('speakers_backup.json', function(err, data) {
     if (err) throw err;
 
@@ -69,6 +78,7 @@ router.get('/', function(req, res) {
       topics_description_two: topicsDesciption_two,
       include_header: includeHeader,
       mailchimp_message: mailchimpMessage,
+      contact_message: contactMessage,
       speakerRows: speakerRows
     });
   });

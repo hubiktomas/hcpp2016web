@@ -1089,7 +1089,7 @@ section#highlight {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-		@supports (background-attachment: fixed) {
+		@media(min-width: 1280px) {
 			& {
 				background-attachment: fixed
 			}
@@ -1361,7 +1361,7 @@ section#newsletter {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-		@supports (background-attachment: fixed) {
+		@media(min-width: 1280px) {
 			& {
 				background-attachment: fixed
 			}
@@ -1564,7 +1564,7 @@ header {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-		@supports (background-attachment: fixed) {
+		@media(min-width: 1280px) {
 			& {
 				background-attachment: fixed
 			}
@@ -1795,7 +1795,13 @@ header#hero-sm .header-text {
 /* ========== Hero Backgrounds ========== */
 
 .homepage {
-    background-image: url(/media/image-backgrounds/fullwidth-header.png);
+    background-image: url(/media/image-backgrounds/fullwidth-header-small.png);
+
+		@media(min-width: 768px) {
+			& {
+				background-image: url(/media/image-backgrounds/fullwidth-header.png);
+			}
+		}
 }
 .schedulebg {
     background-image: url(/media/image-backgrounds/black-and-white/schedulebg.jpg);

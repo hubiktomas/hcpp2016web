@@ -13,11 +13,11 @@ var topicsDesciption_two = 'Come and join us at the 3rd Hackers Congress Paralel
 var includeHeader = true;
 
 var formatApiData = function(apiData) {
-  var speakers = apiData.schedule_speakers.speakers;
-
-  speakers.forEach(function(speaker, index) {
+  var speakers = apiData.schedule_speakers.speakers.map(function(speaker, index) {
     var orderMatch = speaker.description.match(/{{(.*)}}/) || [0, 100];
     speaker.order = parseInt(orderMatch[1]);
+
+    return speaker;
   });
 
   speakers.sort(function(a, b) {

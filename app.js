@@ -18,6 +18,7 @@ var indexRoute = require('./routes/index');
 var conductRoute = require('./routes/code_of_conduct');
 var subscribeRoute = require('./routes/subscribe');
 var contactRoute = require('./routes/contact');
+var scheduleRoute = require('./routes/schedule');
 
 var app = express();
 
@@ -70,6 +71,12 @@ app.use('/', indexRoute);
 app.use('/code-of-conduct', conductRoute);
 app.use('/subscribe', subscribeRoute);
 app.use('/contact', contactRoute);
+app.use('/schedule', scheduleRoute);
+
+// redirect old address
+app.get('/eng', function(req, res) {
+  res.redirect('/');
+});
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

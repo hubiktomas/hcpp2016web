@@ -3,4 +3,5 @@ node_modules/
 .DS_Store
 .env
 speakers_backup.json
+schedule_backup.json
 assets/backup-images/*.jpg

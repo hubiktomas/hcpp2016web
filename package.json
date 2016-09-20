@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "postinstall": "node ./speakers-backup.js"
+    "postinstall": "node ./speakers-backup.js && node ./schedule-backup.js"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
@@ -16,7 +16,9 @@
     "express-session": "^1.14.1",
     "handlebars-helpers": "^0.7.5",
     "helmet": "^2.1.2",
+    "lodash": "^4.16.1",
     "mailchimp-api": "^2.0.7",
+    "moment": "^2.15.0",
     "morgan": "^1.6.1",
     "multer": "^1.2.0",
     "node-fetch": "1.6.0",

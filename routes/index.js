@@ -1,8 +1,8 @@
-require('dotenv').config({silent: true});
 var express = require('express');
 var router = express.Router();
 var fetch = require('node-fetch');
 var fs = require('fs');
+var moment = require('moment');
 
 /* GET home page. */
 
@@ -41,8 +41,36 @@ var formatApiData = function(apiData) {
   return speakerRows;
 }
 
-var formatSchedule = function(apiData) {
-  return apiData;
+var formatSchedule = function(apiDataSchedule) {
+
+  var smallSchedule = apiDataSchedule.conference_events.events.map(function(event, index) {
+    event.format_start_time = moment(event.start_time).format('HH.mm A');
+    event.duration = moment(event.end_time).diff(moment(event.start_time), 'minutes');
+    event.valid = true;
+
+    if (moment(event.start_time).format() < moment().format()) {
+      event.valid = false;
+    }
+
+    return event;
+
+  });
+
+  smallSchedule.sort(function(a, b) {
+    if (moment(a.start_time).valueOf() > moment(b.start_time).valueOf()) {
+      return 1;
+    }
+
+    if (moment(a.start_time).valueOf() < moment(b.start_time).valueOf()) {
+      return -1;
+    }
+
+    return 0;
+  });
+
+  smallSchedule.splice(7);
+
+  return smallSchedule;
 }
 
 router.get('/', function(req, res) {

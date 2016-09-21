@@ -13,35 +13,26 @@
     <!-- /.Title & Subtitle -->
     <!-- Timeline -->
     <div id="timeline">
-      <!-- Timeline Item 01 -->
-      <div class="timeline-item">
-        <div class="timeline-icon"> <i class="fa fa-star fa-lg"></i> </div>
-        <div class="timeline-content">
-          <h2>Breakfast &amp; Registration</h2>
-          <p>We will start this amazing day with delicious coffee and muffins provided by M&C. Take this opportunity to chat with fellow designers, programmers and marketers. </p>
-          <span class="label label-main">Back foyer - (90mins)</span> </div>
-      </div>
-      <!-- /.Timeline Item 01 -->
+      {{#forEach smallSchedule}}
+        {{#if valid}}
+          <!-- Timeline Item -->
+          <div class="timeline-item">
+            <div class="timeline-icon"> <i class="fa fa-star fa-lg"></i> </div>
+            <div class="timeline-content {{#ifEven index}}right{{/ifEven}}">
+              <h2>{{title}}</h2>
+              <p class="text-big text-center text-bold">{{format_start_time}}</p>
+              {{#each speakers}}
+                <p class="text-center text-bold"><img src="{{image}}" alt="{{full_public_name}}" class="img-responsive center-block img-circle img-speaker">
+                  {{full_public_name}}
+                </p>
+              {{/each}}
+              <p>{{abstract}}</p>
+              <span class="label label-main">{{room.name}} - (~{{duration}}mins)</span> </div>
+          </div>
+          <!-- /.Timeline Item -->
+        {{/if}}
+      {{/forEach}}
 
-      <!-- Timeline Item 02 -->
-      <div class="timeline-item">
-        <div class="timeline-icon"> <i class="fa fa-star fa-lg"></i> </div>
-        <div class="timeline-content right">
-          <h2>How Creative can you really be?</h2>
-          <p>Kicking off the fun part with a great lecture by John Bower - founder of Creative Space 52 - who will tell you how he managed to extend the boundaries of his creativity and be much more innovative. </p>
-          <span class="label label-main">Tech Hall - (~45mins)</span> </div>
-      </div>
-      <!-- /.Timeline Item 02 -->
-
-      <!-- Timeline Item 03 -->
-      <div class="timeline-item">
-        <div class="timeline-icon"> <i class="fa fa-star fa-lg"></i> </div>
-        <div class="timeline-content">
-          <h2>Why you should pay attention to UX?</h2>
-          <p>We will start this amazing day with delicious coffee and muffins provided by M&C. Take this opportunity to chat with fellow designers, programmers and marketers. </p>
-          <span class="label label-main">Design Hall - (~30mins)</span> </div>
-      </div>
-      <!-- /.Timeline Item 03 -->
       <!-- Timeline Full Schedule Link -->
       <div class="timeline-item">
         <div class="timeline-icon"> <a href="/schedule"><i class="fa fa-angle-double-down fa-2x"></i></a> </div>

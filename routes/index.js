@@ -41,6 +41,10 @@ var formatApiData = function(apiData) {
   return speakerRows;
 }
 
+var formatSchedule = function(apiData) {
+  return apiData;
+}
+
 router.get('/', function(req, res) {
 
   var mailchimpMessage = null;

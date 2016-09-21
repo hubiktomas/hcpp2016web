@@ -68,18 +68,26 @@ router.get('/', function(req, res) {
 
     var speakerRows = formatApiData(apiData);
 
-    res.render('index', {
-      protocol: req.protocol,
-      hostname: req.hostname,
-      path: req.originalUrl,
-      title_hash: hashTitle,
-      description: pageDescription,
-      topics_description_one: topicsDesciption_one,
-      topics_description_two: topicsDesciption_two,
-      include_header: includeHeader,
-      mailchimp_message: mailchimpMessage,
-      contact_message: contactMessage,
-      speakerRows: speakerRows
+    fs.readFile('schedule_backup.json', function(err, data) {
+
+      var apiDataSchedule = JSON.parse(data);
+
+      var smallSchedule = formatSchedule(apiDataSchedule);
+
+      res.render('index', {
+        protocol: req.protocol,
+        hostname: req.hostname,
+        path: req.originalUrl,
+        title_hash: hashTitle,
+        description: pageDescription,
+        topics_description_one: topicsDesciption_one,
+        topics_description_two: topicsDesciption_two,
+        include_header: includeHeader,
+        mailchimp_message: mailchimpMessage,
+        contact_message: contactMessage,
+        speakerRows: speakerRows,
+        smallSchedule: smallSchedule
+      });
     });
   });
 });

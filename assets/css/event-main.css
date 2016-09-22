@@ -97,6 +97,9 @@ header#fullwidth .decentralization {
 .underlined {
     text-decoration: underline;
 }
+.inline-block {
+  display: inline-block;
+}
 textarea {
     resize: none;
 }
@@ -1160,9 +1163,21 @@ section#highlight {
     color: var(--mainColor);
 }
 #timeline .timeline-item .timeline-content {
+    position: relative;
     width: 45%;
     background: #EFEFEF;
     padding: 20px;
+}
+#timeline .timeline-item .timeline-content .time {
+  position: absolute;
+  top: 0.2em;
+  right: 0.2em;
+  padding: 0.5em;
+  background: #fff;
+}
+#timeline .timeline-item .timeline-content.right .time {
+  right: initial;
+  left: 0.2em;
 }
 #timeline .timeline-item .timeline-content h2 {
     padding: 15px;

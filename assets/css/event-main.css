@@ -1536,21 +1536,16 @@ ul.social-buttons li a:active {
 16.Labels
 *********/
 
-#timeline .label-main {
-    background-color: var(--mainColor);
-    color: #FFF;
-    font-size: 14px;
-    margin-left: -30px;
-    border-radius: 0;
-    font-weight: 400;
-}
-#full-schedule .label-main {
+.label-main {
     background-color: var(--mainColor);
     color: #FFF;
     font-size: 14px;
     margin-left: 0px;
     border-radius: 0;
     font-weight: 400;
+}
+#timeline .label-main {
+    margin-left: -30px;
 }
 /*********
 16.Headers

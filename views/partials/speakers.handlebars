@@ -17,11 +17,13 @@
       <div class="col-md-3 col-sm-6 col-xs-8 col-xs-offset-2 col-sm-offset-0 text-center">
         <!-- Speaker -->
         <div class="speaker-item">
-          <a href="#newsletter">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#speaker_{{id}}">
             <figure class="speaker accent-bg"> <img src="{{image}}" width="300" height="300" alt="{{full_public_name}}" class="img-responsive center-block" />
+              {{#withFirst events}}
               <figcaption>
-                <p class="text-uppercase accent">More info coming soon, subscribe to our newsletter</p>
+                <p class="text-uppercase accent">{{title}}</p>
               </figcaption>
+              {{/withFirst}}
             </figure>
           </a>
           <p><span class="speaker-accent">{{full_public_name}}</span>
@@ -29,6 +31,52 @@
         </div>
         <!-- /.Speaker -->
       </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="speaker_{{id}}" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h2 class="modal-title" id="{{full_public_name}}">{{full_public_name}}</h2>
+              <p>
+                {{abstract}}
+              </p>
+            </div>
+            <div class="modal-body clearfix">
+              <div class="row">
+                <div class="col-sm-12 col-md-3">
+                  <img src="{{image}}" width="200" height="200" alt="{{full_public_name}}" class="img-responsive pull-left" />
+                </div>
+                <div class="col-sm-12 col-md-9">
+                  <p>
+                    {{description}}
+                  </p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-12">
+                  <h3>Talks:</h3>
+                  {{#forEach events}}
+                    <h4>{{title}}</h4>
+                    <div class="mrgn-10-btm">
+                      <span class="label label-main">{{room.name}} - ({{dayTime}})</span>
+                    </div>
+                    <p>
+                      {{abstract}}
+                    </p>
+                    {{#unless isLast}}
+                      <hr>
+                    {{/unless}}
+                  {{/forEach}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {{/each}}
     </div>
     {{#eq @index 1}}

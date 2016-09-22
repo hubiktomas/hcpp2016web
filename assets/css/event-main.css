@@ -1175,9 +1175,11 @@ section#highlight {
   padding: 0.5em;
   background: #fff;
 }
-#timeline .timeline-item .timeline-content.right .time {
-  right: initial;
-  left: 0.2em;
+@media screen and (min-width: 769px) {
+  #timeline .timeline-item .timeline-content.right .time {
+    right: initial;
+    left: 0.2em;
+  }
 }
 #timeline .timeline-item .timeline-content h2 {
     padding: 15px;

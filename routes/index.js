@@ -1,8 +1,9 @@
-require('dotenv').config({silent: true});
 var express = require('express');
 var router = express.Router();
 var fetch = require('node-fetch');
 var fs = require('fs');
+var moment = require('moment');
+var _ = require('lodash');
 
 /* GET home page. */
 
@@ -12,12 +13,25 @@ var topicsDesciption_one = 'The concept of authoritative state is gradually beco
 var topicsDesciption_two = 'Come and join us at the 3rd Hackers Congress Paralelní Polis with hundreds of technology enthusiasts, tech-entrepreneurs, activists and cryptoanarchists to celebrate the age of digital freedom and decentralization!';
 var includeHeader = true;
 
-var formatApiData = function(apiData) {
-  var speakers = apiData.schedule_speakers.speakers;
-
-  speakers.forEach(function(speaker, index) {
+var formatApiData = function(apiData, fullSchedule) {
+  var speakers = apiData.schedule_speakers.speakers.map(function(speaker, index) {
     var orderMatch = speaker.description.match(/{{(.*)}}/) || [0, 100];
     speaker.order = parseInt(orderMatch[1]);
+    speaker.description = speaker.description.substring(0, speaker.description.indexOf('{{')) || speaker.abstract;
+
+    speaker.events = speaker.events.map(function(event, index) {
+      var speakerEvent = _.find(fullSchedule, {'guid': event.guid});
+
+      if(speakerEvent) {
+        event.abstract = speakerEvent.abstract;
+        event.room = speakerEvent.room;
+        event.dayTime = moment(speakerEvent.start_time).format('dddd HH:mm');
+      }
+
+      return event;
+    });
+
+    return speaker;
   });
 
   speakers.sort(function(a, b) {
@@ -41,6 +55,40 @@ var formatApiData = function(apiData) {
   return speakerRows;
 }
 
+var formatSchedule = function(apiDataSchedule, returnSliced) {
+
+  var smallSchedule = apiDataSchedule.conference_events.events.map(function(event, index) {
+    event.format_start_time = moment(event.start_time).format('HH.mm A');
+    event.duration = moment(event.end_time).diff(moment(event.start_time), 'minutes');
+    event.valid = true;
+
+    if (moment(event.start_time).format() < moment().format()) {
+      event.valid = false;
+    }
+
+    return event;
+
+  });
+
+  smallSchedule.sort(function(a, b) {
+    if (moment(a.start_time).valueOf() > moment(b.start_time).valueOf()) {
+      return 1;
+    }
+
+    if (moment(a.start_time).valueOf() < moment(b.start_time).valueOf()) {
+      return -1;
+    }
+
+    return 0;
+  });
+
+  if (returnSliced) {
+    smallSchedule.splice(7);
+  }
+
+  return smallSchedule;
+}
+
 router.get('/', function(req, res) {
 
   var mailchimpMessage = null;
@@ -61,25 +109,35 @@ router.get('/', function(req, res) {
     contactMessage = 'There was an error sending message. ' + req.session.contactErrorMsg;
   }
 
-  fs.readFile('speakers_backup.json', function(err, data) {
+  fs.readFile('schedule_backup.json', function(err, data) {
     if (err) throw err;
 
-    var apiData = JSON.parse(data);
+    var apiDataSchedule = JSON.parse(data);
 
-    var speakerRows = formatApiData(apiData);
+    var smallSchedule = formatSchedule(apiDataSchedule, true);
+    var fullSchedule = formatSchedule(apiDataSchedule, false);
 
-    res.render('index', {
-      protocol: req.protocol,
-      hostname: req.hostname,
-      path: req.originalUrl,
-      title_hash: hashTitle,
-      description: pageDescription,
-      topics_description_one: topicsDesciption_one,
-      topics_description_two: topicsDesciption_two,
-      include_header: includeHeader,
-      mailchimp_message: mailchimpMessage,
-      contact_message: contactMessage,
-      speakerRows: speakerRows
+    fs.readFile('speakers_backup.json', function(err, data) {
+      if (err) throw err;
+
+      var apiData = JSON.parse(data);
+
+      var speakerRows = formatApiData(apiData, fullSchedule);
+
+      res.render('index', {
+        protocol: req.protocol,
+        hostname: req.hostname,
+        path: req.originalUrl,
+        title_hash: hashTitle,
+        description: pageDescription,
+        topics_description_one: topicsDesciption_one,
+        topics_description_two: topicsDesciption_two,
+        include_header: includeHeader,
+        mailchimp_message: mailchimpMessage,
+        contact_message: contactMessage,
+        speakerRows: speakerRows,
+        smallSchedule: smallSchedule
+      });
     });
   });
 });

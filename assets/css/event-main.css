@@ -97,6 +97,9 @@ header#fullwidth .decentralization {
 .underlined {
     text-decoration: underline;
 }
+.inline-block {
+  display: inline-block;
+}
 textarea {
     resize: none;
 }
@@ -402,7 +405,7 @@ video {
 }
 .form-group input.form-control {
     height: 42px;
-    background-color: rgba(250, 250, 250, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
     color: #141414;
 }
 .form-control {
@@ -410,7 +413,7 @@ video {
     border: 1px solid #fff;
 }
 .form-group textarea.form-control {
-    background-color: rgba(250, 250, 250, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
     color: #141414;
 }
 .form-control:focus {
@@ -1160,9 +1163,23 @@ section#highlight {
     color: var(--mainColor);
 }
 #timeline .timeline-item .timeline-content {
+    position: relative;
     width: 45%;
     background: #EFEFEF;
     padding: 20px;
+}
+#timeline .timeline-item .timeline-content .time {
+  position: absolute;
+  top: 0.2em;
+  right: 0.2em;
+  padding: 0.5em;
+  background: #fff;
+}
+@media screen and (min-width: 769px) {
+  #timeline .timeline-item .timeline-content.right .time {
+    right: initial;
+    left: 0.2em;
+  }
 }
 #timeline .timeline-item .timeline-content h2 {
     padding: 15px;
@@ -1174,7 +1191,7 @@ section#highlight {
 #timeline .timeline-item .timeline-content:before {
     content: '';
     position: absolute;
-    left: 45%;
+    left: 100%;
     top: 20px;
     width: 0;
     height: 0;
@@ -1187,7 +1204,7 @@ section#highlight {
 }
 #timeline .timeline-item .timeline-content.right:before {
     content: '';
-    right: 45%;
+    right: 100%;
     left: inherit;
     border-left: 0;
     border-right: 7px solid #f1f1f1;
@@ -1536,21 +1553,16 @@ ul.social-buttons li a:active {
 16.Labels
 *********/
 
-#timeline .label-main {
-    background-color: var(--mainColor);
-    color: #FFF;
-    font-size: 14px;
-    margin-left: -30px;
-    border-radius: 0;
-    font-weight: 400;
-}
-#full-schedule .label-main {
+.label-main {
     background-color: var(--mainColor);
     color: #FFF;
     font-size: 14px;
     margin-left: 0px;
     border-radius: 0;
     font-weight: 400;
+}
+#timeline .label-main {
+    margin-left: -30px;
 }
 /*********
 16.Headers

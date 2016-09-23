@@ -39,9 +39,6 @@
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h2 class="modal-title" id="{{full_public_name}}">{{full_public_name}}</h2>
-              <p>
-                {{abstract}}
-              </p>
             </div>
             <div class="modal-body clearfix">
               <div class="row">
@@ -57,11 +54,10 @@
               <hr>
               <div class="row">
                 <div class="col-sm-12">
-                  <h3>Talks:</h3>
                   {{#forEach events}}
                     <h4>{{title}}</h4>
                     <div class="mrgn-10-btm">
-                      <span class="label label-main">{{room.name}} - ({{dayTime}})</span>
+                      <span class="label label-main">{{dayTime}} - {{room.name}}</span>
                     </div>
                     <p>
                       {{abstract}}

@@ -1191,7 +1191,7 @@ section#highlight {
 #timeline .timeline-item .timeline-content:before {
     content: '';
     position: absolute;
-    left: 45%;
+    left: 100%;
     top: 20px;
     width: 0;
     height: 0;
@@ -1204,7 +1204,7 @@ section#highlight {
 }
 #timeline .timeline-item .timeline-content.right:before {
     content: '';
-    right: 45%;
+    right: 100%;
     left: inherit;
     border-left: 0;
     border-right: 7px solid #f1f1f1;

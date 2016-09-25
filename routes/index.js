@@ -17,7 +17,14 @@ var formatApiData = function(apiData, fullSchedule) {
   var speakers = apiData.schedule_speakers.speakers.map(function(speaker, index) {
     var orderMatch = speaker.description.match(/{{(.*)}}/) || [0, 100];
     speaker.order = parseInt(orderMatch[1]);
-    speaker.description = speaker.description.substring(0, speaker.description.indexOf('{{')) || speaker.abstract;
+    if (speaker.description.length > 0) {
+      if (speaker.description.indexOf('{{') > -1) {
+        speaker.description = speaker.description.substring(0, speaker.description.indexOf('{{'));
+      }
+    }
+    else {
+      speaker.description = speaker.abstract;
+    }
 
     speaker.events = speaker.events.map(function(event, index) {
       var speakerEvent = _.find(fullSchedule, {'guid': event.guid});

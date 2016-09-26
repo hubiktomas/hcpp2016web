@@ -1968,7 +1968,7 @@ section#full-schedule .food-break p {
     text-align: center
 }
 section#full-schedule .coffee-break {
-    background: url(/media/image-backgrounds/black-and-white/coffee-break.jpg);
+    background: url(/media/image-backgrounds/coffee-break.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     -webkit-background-size: cover;

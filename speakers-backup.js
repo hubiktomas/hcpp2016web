@@ -25,7 +25,7 @@ function formatData(jsonData) {
 
           imagemin([path.join(__dirname + '/assets/backup-images/image_') + speaker.id + '.jpg'], path.join(__dirname + '/assets/backup-images/'), {
               plugins: [
-                  imageminMozjpeg(),
+                  imageminMozjpeg({quality: 70}),
                   imageminPngquant({quality: '65-80'})
               ]
           }).then(files => {

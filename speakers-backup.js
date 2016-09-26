@@ -1,6 +1,9 @@
 var fetch = require('node-fetch');
 var fs = require('fs');
 var path = require('path');
+var imagemin = require('imagemin');
+var imageminMozjpeg = require('imagemin-mozjpeg');
+var imageminPngquant = require('imagemin-pngquant');
 
 var apiUrl = 'http://frab.paralelnipolis.cz/en/hcpp2016/public/speakers.json';
 
@@ -19,6 +22,16 @@ function formatData(jsonData) {
           if (err) throw err;
 
           console.log('File image_' + speaker.id + '.jpg saved!');
+
+          imagemin([path.join(__dirname + '/assets/backup-images/image_') + speaker.id + '.jpg'], path.join(__dirname + '/assets/backup-images/'), {
+              plugins: [
+                  imageminMozjpeg(),
+                  imageminPngquant({quality: '65-80'})
+              ]
+          }).then(files => {
+              console.log(files);
+              //=> [{data: <Buffer 89 50 4e …>, path: 'build/images/foo.jpg'}, …]
+          });
         });
       })
       .catch(function(err) {

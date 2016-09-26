@@ -405,7 +405,7 @@ video {
 }
 .form-group input.form-control {
     height: 42px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(240, 240, 240, 0.9);
     color: #141414;
 }
 .form-control {
@@ -413,7 +413,7 @@ video {
     border: 1px solid #fff;
 }
 .form-group textarea.form-control {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(240, 240, 240, 0.9);
     color: #141414;
 }
 .form-control:focus {

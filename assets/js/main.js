@@ -87,6 +87,17 @@ $('.see-more').on('click', function() {
   $('.see-more').fadeOut();
 });
 
+var lazyImages = document.querySelectorAll('[data-lazy]');
+Array.prototype.forEach.call(lazyImages, function(img) {
+  var imageUrl = img.getAttribute('data-lazy');
+  var image = new Image();
+
+  image.src = imageUrl;
+  image.onload = function() {
+    img.setAttribute('src', imageUrl);
+  }
+});
+
 $(window).on('load', function() {
   if (window.location.search.indexOf('?subscribe') > -1) {
     var hash = '#newsletter';

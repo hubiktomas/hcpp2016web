@@ -41,6 +41,11 @@ var formatApiData = function(apiData, fullSchedule) {
     return speaker;
   });
 
+  // Hardcoded MakersLab removal
+  _.remove(speakers, function(speaker) {
+    return speaker.id == 72;
+  })
+
   speakers.sort(function(a, b) {
     if (a.order > b.order) {
       return 1;

@@ -95,6 +95,11 @@ var formatSchedule = function(apiDataSchedule, returnSliced) {
   });
 
   if (returnSliced) {
+    var validIndex = _.findLastIndex(smallSchedule, function(o) {
+      return o.valid == false;
+    });
+
+    smallSchedule.splice(0, validIndex);
     smallSchedule.splice(7);
   }
 

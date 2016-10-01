@@ -19,6 +19,7 @@ var conductRoute = require('./routes/code_of_conduct');
 var subscribeRoute = require('./routes/subscribe');
 var contactRoute = require('./routes/contact');
 var scheduleRoute = require('./routes/schedule');
+var rossRoute = require('./routes/ross');
 
 var app = express();
 
@@ -72,6 +73,7 @@ app.use('/code-of-conduct', conductRoute);
 app.use('/subscribe', subscribeRoute);
 app.use('/contact', contactRoute);
 app.use('/schedule', scheduleRoute);
+app.use('/ross', rossRoute);
 
 // redirect old address
 app.get('/eng', function(req, res) {

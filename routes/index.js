@@ -106,7 +106,7 @@ var formatSchedule = function(apiDataSchedule, returnSliced) {
   return smallSchedule;
 }
 
-router.get('/', function(req, res) {
+router.get('/', recaptcha.middleware.render, function(req, res) {
 
   var mailchimpMessage = null;
 
@@ -153,7 +153,8 @@ router.get('/', function(req, res) {
         mailchimp_message: mailchimpMessage,
         contact_message: contactMessage,
         speakerRows: speakerRows,
-        smallSchedule: smallSchedule
+        smallSchedule: smallSchedule,
+        captcha: req.recaptcha
       });
     });
   });

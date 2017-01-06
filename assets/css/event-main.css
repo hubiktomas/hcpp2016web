@@ -1457,6 +1457,15 @@ section#location .embed-responsive-16by9 {
         padding: 25%
     }
 }
+
+/*********
+XX.Section Contact
+*********/
+
+section#contact {
+  background: #fff;
+}
+
 /*********
 13.Footer
 *********/
